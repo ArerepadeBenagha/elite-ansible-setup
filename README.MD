@@ -36,7 +36,7 @@ elitesolutions  ALL=NOPASSWD:  ALL
 systemctl restart sshd
 
 # Install epel repo
-yum install epel-release
+sudo amazon-linux-extras install epel
 
 # Install ansible software
 yum install ansible -y
@@ -46,7 +46,7 @@ sudo nano /etc/ansible/hosts
 # create node groups
 
 [webserver]
-enter private-ip for EC2
+enter private-ip for slave EC2
 
 
 
@@ -81,8 +81,8 @@ ssh-keygen # create a key
 ssh-copy-id elitesolutions@IP-ADDRESS of EC2-remote machine
 
 # Access slave machine from master
-If configure correctly you will see a connection string to slave machine from master
-
+# If configure correctly you will see a connection string to slave machine from master
+ssh 'elitesolutions@3.237.201.198'
 
 SETUP IS READY, check connection
 --------------------------------
