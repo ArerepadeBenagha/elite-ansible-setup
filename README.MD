@@ -1,0 +1,98 @@
+_________________
+ANSIBLE FRAMEWORK
+_________________
+
+Ansible architecture is push based 
+- Ansible contolled machine/slave
+- Ansible controller machine/master
+- push based with an ssh-agent on slave machine.
+- ssh works on port 2200 or 22 as widely known.
+On ansible controller machine ansible will be installed but in the slave machine no ansible software needs to be installed.
+
+---------------------------------
+Ansible uses playbooks --> plays -----> tasks -----> action
+
+Ansible is based on python, without python ansible will not owrk because it is the frame work.
+Ansible have set of commands and are saved in modules which are written in python.
+
+CONFIGURE
+=========
+
+setup on master.
+----------------
+## Ensure password less connection, how?
+sudo nano /etc/ssh/sshd_config
+change (password authentication = yes)
+
+# switch from root user to another or a local user.
+useradd elitesolutions
+passwd  elitesolutions
+
+# Provide root privillege to elitesolutions
+sudo nano /etc/sudoers
+elitesolutions  ALL=NOPASSWD:  ALL
+
+# restart sshd file to sync changes
+systemctl restart sshd
+
+# Install epel repo
+yum install epel-release
+
+# Install ansible software
+yum install ansible -y
+
+# Create Inventory
+sudo nano /etc/ansible/hosts
+# create node groups
+
+[webserver]
+enter private-ip for EC2
+
+
+
+# <----> on slave machine <--->
+
+## Ensure password less connection, how?
+sudo nano /etc/ssh/sshd_config
+change (password authentication = yes)
+
+# switch from root user to another or a local user.
+useradd elitesolutions
+passwd  elitesolutions
+
+# Add user to sudoers file
+sudo nano /etc/sudoers
+elitesolutions  ALL=NOPASSWD:  ALL
+
+# restart sshd
+systemctl restart sshd
+
+
+# On master and slave switch user to new local user
+su - elitesolutions
+
+# create a link between master and slave or agent master
+# on master
+su - elitesolutions
+
+ssh-keygen # create a key
+
+# Copy key create to slave machne
+ssh-copy-id elitesolutions@IP-ADDRESS of EC2-remote machine
+
+# Access slave machine from master
+If configure correctly you will see a connection string to slave machine from master
+
+
+SETUP IS READY, check connection
+--------------------------------
+ansible -m ping webserver # test connection
+
+# -m flad stands for module
+
+COMMANDS
+--------
+# check uptime
+ansible -m command -a "uptime" webserver
+ansible -m user "name=john password=john" webserver --become   # become authenticates your local user as root user
+# check slave machine to check if john exists
