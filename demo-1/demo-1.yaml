@@ -3,11 +3,11 @@
   become: true
   become_user: root
   tasks:
-  - name: install nginx
+  - name: install httpd
     yum:  
-      name=nginx 
+      name=httpd
       state=present
-  - name: start nginx service
+  - name: start httpd service
     service:
-      name=nginx
+      name=httpd
       state=started   
