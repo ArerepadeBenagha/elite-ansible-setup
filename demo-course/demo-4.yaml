@@ -1,0 +1,20 @@
+---
+- hosts: webserver
+  become: true
+  become_user: root
+  tasks:
+  - name: install docker
+    yum:  
+      name=docker
+      state=present
+  - name: start docker service
+    service:
+      name=docker
+      state=started   
+  - name: copy dockerfile form github
+    git: repo=https://github.com/devopseng129/repo-1972020.git 
+         dest=/tmp/placeholder
+  - name: build dockerfile
+    command: chdir=/tmp/placeholder docker build -t deploy:ansible .
+  - name: run docker image
+    command: docker run -itd -P deploy:ansible
