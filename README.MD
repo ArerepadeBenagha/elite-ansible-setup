@@ -96,3 +96,9 @@ COMMANDS
 ansible -m command -a "uptime" webserver
 ansible -m user "name=john password=john" webserver --become   # become authenticates your local user as root user
 # check slave machine to check if john exists
+
+# syntax check
+ansible-playbook demo-1 --syntax-check
+
+# check how many host gets impacted
+ansible-playbook demo-1 --list-host
