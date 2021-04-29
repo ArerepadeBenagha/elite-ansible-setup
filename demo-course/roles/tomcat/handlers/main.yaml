@@ -1,5 +1,2 @@
-handlers:  
-  - name: restart tomcat
-    service:
-      name=tomcat
-      state=restarted
+- name:    restart tomcat
+  service: name=tomcat state=restarted

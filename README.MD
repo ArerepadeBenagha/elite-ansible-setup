@@ -102,3 +102,7 @@ ansible-playbook demo-1 --syntax-check
 
 # check how many host gets impacted
 ansible-playbook demo-1 --list-host
+
+# How to use roles written by other developers
+Go to ansible galaxy: search a key word role e.g jenkins.
+
