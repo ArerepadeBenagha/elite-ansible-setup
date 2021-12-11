@@ -119,3 +119,5 @@ python3 get-pip.py --user
 python3 -m pip install --user paramiko
 
 ansible --version
+
+ansible-playbook datadog.yml -i datadog-inventory.yml --user ubuntu --private-key /home/eliteadmin/.ssh/vault -vvv
