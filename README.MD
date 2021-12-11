@@ -106,3 +106,16 @@ ansible-playbook demo-1 --list-host
 # How to use roles written by other developers
 Go to ansible galaxy: search a key word role e.g jenkins.
 
+
+
+/////////////
+install python 3
+sudo python3 get-pip.py
+
+Install ansible with pip
+
+curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+python3 get-pip.py --user
+python3 -m pip install --user paramiko
+
+ansible --version
