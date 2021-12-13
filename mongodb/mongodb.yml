@@ -1,10 +1,12 @@
+# Before running tis playbook, import public key in the server: wget -qO - https://www.mongodb.org/static/pgp/server-5.0.asc | sudo apt-key add -
 ---
-- hosts: all
-  become: yes
+- hosts: server1
+  become: true
+  gather_facts: true
+ 
   tasks:
-  
   - name: Import the public key used by the package management system
-    apt_key: keyserver=hkp://keyserver.ubuntu.com:80 id=7F0CEB10 state=present
+    apt_key: keyserver=hkp://keyserver.ubuntu.com:80 id=EA312927 state=present
 
   - name: Add MongoDB repository
     apt_repository: repo='deb https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/5.0 multiverse' state=present
