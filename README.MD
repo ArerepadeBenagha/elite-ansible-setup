@@ -122,5 +122,5 @@ ansible --version
 
 ansible-playbook datadog.yml -i datadog-inventory.yml --user ubuntu --private-key /home/eliteadmin/.ssh/vault -vvv
 
-////decrypt and encrypt
+////decrypt and encrypt  -----password=vault
 ansible-vault encrypt vars/vars.yml
