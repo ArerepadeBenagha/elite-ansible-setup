@@ -1,0 +1,29 @@
+---
+
+- hosts: localhost
+  connection: local
+  gather_facts: false
+  vars_files:
+    - vars/vars.yml
+
+  tasks:
+    - name: example using security group rule descriptions
+      ec2_group:
+         name: ansible
+         description: sg with rule descriptions
+         region: "{{ region }}"
+         aws_secret_key: "{{ aws_access_key }}"
+         aws_access_key: "{{ aws_secret_key }}"
+         rules:
+            - proto: tcp
+              from_port: 80
+              to_port: 80
+              cidr_ip: 70.114.65.185/32
+            - proto: tcp
+              from_port: 22
+              to_port: 22
+              cidr_ip: 70.114.65.185/32
+            - proto: tcp
+              from_port: 443
+              to_port: 443
+              cidr_ip: 70.114.65.185/32
