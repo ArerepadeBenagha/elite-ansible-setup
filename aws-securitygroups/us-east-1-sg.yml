@@ -10,7 +10,7 @@
     - name: example using security group rule descriptions
       ec2_group:
          name: "{{ name }}"
-         description: sg with rule descriptions
+         description: primary security group rules for entire infra.
          region: "{{ region }}"
          aws_secret_key: "{{ aws_access_key }}"
          aws_access_key: "{{ aws_secret_key }}"
@@ -27,8 +27,18 @@
               from_port: 443
               to_port: 443
               cidr_ip: 70.114.65.185/32
+            - proto: tcp
+              from_port: 8080
+              to_port: 8080
+              cidr_ip: 70.114.65.185/32
+            - proto: tcp
+              from_port: 5432
+              to_port: 5432
+              cidr_ip: 70.114.65.185/32
+         
+         state: present
          tags: 
-              Name: primary-sg-allow_ssh_http/https
+              Name: "{{ name }}"
               Service: elitesolutionIT
               Owner: elitesolutionIT LLC
               Department: devOps engineering
