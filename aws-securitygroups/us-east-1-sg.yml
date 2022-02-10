@@ -9,7 +9,7 @@
   tasks:
     - name: example using security group rule descriptions
       ec2_group:
-         name: ansible
+         name: "{{ name }}"
          description: sg with rule descriptions
          region: "{{ region }}"
          aws_secret_key: "{{ aws_access_key }}"
@@ -27,3 +27,11 @@
               from_port: 443
               to_port: 443
               cidr_ip: 70.114.65.185/32
+         tags: 
+              Name: primary-sg-allow_ssh_http/https
+              Service: elitesolutionIT
+              Owner: elitesolutionIT LLC
+              Department: devOps engineering
+              ManagedWith: ansible
+              Environment: dev
+              casecode: esc300
